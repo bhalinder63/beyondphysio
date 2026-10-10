@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/anton-latin.woff2') format('woff2');
+}
+
+/* Manrope variable font file covers 500–800 */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/manrope-latin.woff2') format('woff2');
+}
+
+/* Unbounded variable font file covers 700–900 */
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url('/fonts/unbounded-latin.woff2') format('woff2');
+}
+
+@theme {
+  --color-brand: #f54b03;
+  --color-ink: #080807;
+  --color-muted: #b5b1ac;
+  --color-muted-dark: #55504b;
+  --color-rust: #2a1206;
+
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Anton', Impact, sans-serif;
+  --font-wide: 'Unbounded', sans-serif;
+
+  /* One period of the -60deg, 18px stripe pattern measured horizontally (18 / sin 60°) */
+  --animate-stripes: stripes 0.9s linear infinite;
+  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  --animate-menu-in: menu-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+  @keyframes stripes {
+    to { transform: translateX(20.785px); }
+  }
+  @keyframes pulse-ring {
+    from { transform: scale(1); opacity: 0.7; }
+    to { transform: scale(1.25, 1.6); opacity: 0; }
+  }
+  @keyframes menu-in {
+    from { opacity: 0; transform: translateY(-12px); }
+  }
+}
+
+dialog[open] {
+  animation: dialog-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+dialog[open]::backdrop {
+  animation: backdrop-in 0.4s ease-out;
+}
+@keyframes dialog-in {
+  from { opacity: 0; transform: translateY(48px) scale(0.97); }
+}
+@keyframes backdrop-in {
+  from { opacity: 0; }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply m-0 bg-brand text-ink font-sans font-medium text-base leading-6 antialiased;
+  }
+  a {
+    color: inherit;
+  }
+  a:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after,
+  dialog[open]::backdrop {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
