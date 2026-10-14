@@ -93,6 +93,17 @@ export default function Join() {
             Instagram {INSTAGRAM_HANDLE}
           </motion.a>
         </Stagger>
+        <p className="mt-8 mb-0 text-center text-[11px] leading-4 tracking-[0.04em] text-ink/60">
+          Website by{' '}
+          <a
+            href="https://www.webwalastudio.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-ink/80 underline-offset-2 hover:text-ink hover:underline"
+          >
+            Webwala Studio
+          </a>
+        </p>
       </footer>
     </section>
   )
